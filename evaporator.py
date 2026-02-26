@@ -42,3 +42,4 @@ flowsheet.report_statistics()
 m = flowsheet.model
 opt = SolverFactory('ipopt')
 results = opt.solve(m, tee=True)
+# This doesn't have an objective function or decision variables, because we are solving for an exact solution.

@@ -3,7 +3,7 @@
 Install the project and all it's dependencies by running:
 
 ```bash
-pip install .
+pip install -e .
 python evaporator.py
 ```
 

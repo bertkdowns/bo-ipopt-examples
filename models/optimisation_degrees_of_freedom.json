@@ -1,0 +1,145 @@
+[
+    {
+        "id": 275,
+        "simulationObjectId": 1627271,
+        "isFreeVariable": false,
+        "upper_bound": null,
+        "lower_bound": 0.0,
+        "created_at": "2025-09-01T12:27:45.387371Z",
+        "flowsheet": 1323,
+        "scenario": 504,
+        "propertyValue": 176623
+    },
+    {
+        "id": 276,
+        "simulationObjectId": 1627281,
+        "isFreeVariable": false,
+        "upper_bound": null,
+        "lower_bound": 0.0,
+        "created_at": "2025-09-01T12:27:59.346089Z",
+        "flowsheet": 1323,
+        "scenario": 504,
+        "propertyValue": 176739
+    },
+    {
+        "id": 277,
+        "simulationObjectId": 1627297,
+        "isFreeVariable": false,
+        "upper_bound": null,
+        "lower_bound": 0.0,
+        "created_at": "2025-09-01T12:28:13.057217Z",
+        "flowsheet": 1323,
+        "scenario": 504,
+        "propertyValue": 176922
+    },
+    {
+        "id": 278,
+        "simulationObjectId": 1627304,
+        "isFreeVariable": false,
+        "upper_bound": null,
+        "lower_bound": 0.0,
+        "created_at": "2025-09-01T12:28:29.786266Z",
+        "flowsheet": 1323,
+        "scenario": 504,
+        "propertyValue": 177001
+    },
+    {
+        "id": 268,
+        "simulationObjectId": 1627276,
+        "isFreeVariable": true,
+        "upper_bound": 1850.3,
+        "lower_bound": 0.0,
+        "created_at": "2025-09-01T12:10:59.292446Z",
+        "flowsheet": 1323,
+        "scenario": 504,
+        "propertyValue": 176673
+    },
+    {
+        "id": 279,
+        "simulationObjectId": 1627345,
+        "isFreeVariable": false,
+        "upper_bound": null,
+        "lower_bound": 0.0,
+        "created_at": "2025-09-01T12:28:44.941832Z",
+        "flowsheet": 1323,
+        "scenario": 504,
+        "propertyValue": 177553
+    },
+    {
+        "id": 282,
+        "simulationObjectId": 1627280,
+        "isFreeVariable": true,
+        "upper_bound": 3392.2,
+        "lower_bound": 0.0,
+        "created_at": "2025-09-01T16:37:35.415812Z",
+        "flowsheet": 1323,
+        "scenario": 504,
+        "propertyValue": 176720
+    },
+    {
+        "id": 269,
+        "simulationObjectId": 1627296,
+        "isFreeVariable": true,
+        "upper_bound": 1233.5,
+        "lower_bound": 0.0,
+        "created_at": "2025-09-01T12:11:33.669699Z",
+        "flowsheet": 1323,
+        "scenario": 504,
+        "propertyValue": 176903
+    },
+    {
+        "id": 299,
+        "simulationObjectId": 1627302,
+        "isFreeVariable": true,
+        "upper_bound": 350.0,
+        "lower_bound": 0.0,
+        "created_at": "2025-09-03T13:16:57.599302Z",
+        "flowsheet": 1323,
+        "scenario": 504,
+        "propertyValue": 176972
+    },
+    {
+        "id": 265,
+        "simulationObjectId": 1627279,
+        "isFreeVariable": true,
+        "upper_bound": 1850.3,
+        "lower_bound": 0.0,
+        "created_at": "2025-09-01T11:50:41.635806Z",
+        "flowsheet": 1323,
+        "scenario": 504,
+        "propertyValue": 176708
+    },
+    {
+        "id": 266,
+        "simulationObjectId": 1627278,
+        "isFreeVariable": true,
+        "upper_bound": 1850.3,
+        "lower_bound": 0.0,
+        "created_at": "2025-09-01T12:09:58.963525Z",
+        "flowsheet": 1323,
+        "scenario": 504,
+        "propertyValue": 176696
+    },
+    {
+        "id": 267,
+        "simulationObjectId": 1627277,
+        "isFreeVariable": true,
+        "upper_bound": 1850.3,
+        "lower_bound": 0.0,
+        "created_at": "2025-09-01T12:10:25.990005Z",
+        "flowsheet": 1323,
+        "scenario": 504,
+        "propertyValue": 176684
+    },
+    {
+        "id": 274,
+        "simulationObjectId": 1627286,
+        "isFreeVariable": true,
+        "upper_bound": 385.5,
+        "lower_bound": 0.0,
+        "created_at": "2025-09-01T12:13:27.901807Z",
+        "flowsheet": 1323,
+        "scenario": 504,
+        "propertyValue": 176789
+    }
+]

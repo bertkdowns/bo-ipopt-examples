@@ -38,8 +38,21 @@ flowsheet.report_statistics()
 # However, it is very close to the correct solution, and could be solved with a homotopy method.
 # It would be very interesting and useful for us if BO-IPOPT can solve this problem.
 
+# Print all the fixed variables:
+fixed_variables = [
+    item 
+      for id, prop in flowsheet.properties_map.items()
+      if prop.corresponding_constraint != None
+      for item in prop.corresponding_constraint
+      if item is not None
+]
 
 m = flowsheet.model
 opt = SolverFactory('ipopt')
 results = opt.solve(m, tee=True)
 # This doesn't have an objective function or decision variables, because we are solving for an exact solution.
+
+print("Fixed variables:")
+print(fixed_variables)
+for var in fixed_variables:
+    print(pyo.value(var), var)

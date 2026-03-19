@@ -13,8 +13,9 @@ import pyomo.environ as pyo
 from math import log
 from idaes.core.util.scaling import get_scaling_factor
 from idaes.core.scaling import AutoScaler
+from evaporator_manual_scaling import apply_manual_scaling
 
-INPUT_FILE = "json/model_effect_with_recycle.json"
+INPUT_FILE = "models/model_effect_with_recycle.json"
 
 # Get current location (so that we can retrieve .json file with the model data)
 __location__ = os.path.realpath(os.path.join(os.getcwd(), os.path.dirname(__file__)))
@@ -34,12 +35,15 @@ assert flowsheet.degrees_of_freedom() == 0, "Degrees of freedom is not 0: " + st
 flowsheet.report_statistics()
 
 
+
 # This model currently fails to solve in ipopt: it says the problem is infeasible.
 # However, it is very close to the correct solution, and could be solved with a homotopy method.
 # It would be very interesting and useful for us if BO-IPOPT can solve this problem.
 
+apply_manual_scaling(flowsheet)
 
 m = flowsheet.model
 opt = SolverFactory('ipopt')
+opt.options["nlp_scaling_method"] = "user-scaling"
 results = opt.solve(m, tee=True)
 # This doesn't have an objective function or decision variables, because we are solving for an exact solution.

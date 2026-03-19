@@ -7,6 +7,7 @@ import pyomo.environ as pyo
 from idaes.core.util.model_statistics import degrees_of_freedom
 from helper_methods.setup_optimisation import setup_optimisation
 from helper_methods.steam_system_scaling import scale_steam_system
+from idaes.core.util import DiagnosticsToolbox
 
 # Get current location (so that we can retrieve .json file with the model data)
 __location__ = os.path.realpath(os.path.join(os.getcwd(), os.path.dirname(__file__)))
@@ -29,8 +30,8 @@ flowsheet.report_statistics()
 # This model does solve in ipopt, but the optimisation fails to solve.
 
 m = flowsheet.model
-# opt = SolverFactory('ipopt')
-# results = opt.solve(m, tee=True)
+opt = SolverFactory('ipopt')
+results = opt.solve(m, tee=True)
 
 scale_steam_system(flowsheet)
 
@@ -61,9 +62,8 @@ print("Decision variables: ", decision_variables)
 print("Degrees of freedom before optimisation: ", degrees_of_freedom(m))
 print("Number of decision variables: ", len(decision_variables), "(Should be the same as the DOF)")
 
-
 opt = SolverFactory('ipopt')
-#opt.options["nlp_scaling_method"] = "user-scaling"
+opt.options["nlp_scaling_method"] = "user-scaling"
 # opt.options["mu_strategy"] = "adaptive"
 opt.options["hessian_approximation"] = "limited-memory"
 # opt.options["expect_infeasible_problem"] = True

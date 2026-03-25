@@ -14,7 +14,7 @@ from math import log
 from idaes.core.util.scaling import get_scaling_factor
 from idaes.core.scaling import AutoScaler
 
-INPUT_FILE = "models/butane_heat_pump.json"
+INPUT_FILE = "models/butane_heat_pump_updated.json"
 
 # Get current location (so that we can retrieve .json file with the model data)
 __location__ = os.path.realpath(os.path.join(os.getcwd(), os.path.dirname(__file__)))

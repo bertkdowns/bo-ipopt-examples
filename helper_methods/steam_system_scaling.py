@@ -72,9 +72,9 @@ def scale_steam_system(flowsheet: FlowsheetManager):
     calculate_scaling_factors(m)
     
 
-    print("BADLY SCALED VARIABLES:")
-    for var, current_absolute_scaled in badly_scaled_var_generator(m):
-        print(f"{var.local_name:<90}   {pyo.value(var):<14.4f}  {(get_scaling_factor(var) or 1) :<10.4f}   {current_absolute_scaled:<10.4f}")
+    # print("BADLY SCALED VARIABLES:")
+    # for var, current_absolute_scaled in badly_scaled_var_generator(m):
+    #     print(f"{var.local_name:<90}   {pyo.value(var):<14.4f}  {(get_scaling_factor(var) or 1) :<10.4f}   {current_absolute_scaled:<10.4f}")
     
     
 
@@ -90,14 +90,14 @@ def scale_steam_system(flowsheet: FlowsheetManager):
     #opt.options["warm_start_init_point"] = "yes"
    
 
-    dt = DiagnosticsToolbox(m)
-    st = dt.prepare_svd_toolbox()
-    dt.report_numerical_issues()
-    dt.display_variables_with_extreme_jacobians()
-    # dt.display_constraints_with_extreme_jacobians()
+    # dt = DiagnosticsToolbox(m)
+    # st = dt.prepare_svd_toolbox()
+    # dt.report_numerical_issues()
+    # dt.display_variables_with_extreme_jacobians()
+    # # dt.display_constraints_with_extreme_jacobians()
 
-    st.display_constraints_including_variable(getattr(m.fs,"Phase Separator1_1627493").mixed_state[0.0].enth_mol)
-    st.display_variables_in_constraint(getattr(m.fs,"Phase Separator1_1627493").molar_enthalpy_splitting_eqn[0.0,"outlet_1"])
+    # st.display_constraints_including_variable(getattr(m.fs,"Phase Separator1_1627493").mixed_state[0.0].enth_mol)
+    # st.display_variables_in_constraint(getattr(m.fs,"Phase Separator1_1627493").molar_enthalpy_splitting_eqn[0.0,"outlet_1"])
 
     # generate_graph(m, graph_path="steam_system_scaled_graph.html")
     

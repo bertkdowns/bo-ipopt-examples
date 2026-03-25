@@ -56,9 +56,24 @@ with open(os.path.join(__location__, "models/optimisation_degrees_of_freedom.jso
 decision_variables = setup_optimisation(m,flowsheet, dofs)
 
 
+fixed_variables = [
+    item 
+      for id, prop in flowsheet.properties_map.items()
+      if prop.corresponding_constraint != None
+      for item in prop.corresponding_constraint
+      if item is not None
+]
+
+print("==*************** MODEL INFORMATION *****************==")
+print("Fixed variables:")
+print(fixed_variables)
+for var in fixed_variables:
+    print(pyo.value(var), var)
+
+
 print("Model",m)
 print("Objective function:", m.fs.objective)
-print("Decision variables: ", decision_variables)
+print("Decision variables: ", [d.name for d in decision_variables])
 print("Degrees of freedom before optimisation: ", degrees_of_freedom(m))
 print("Number of decision variables: ", len(decision_variables), "(Should be the same as the DOF)")
 

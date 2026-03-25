@@ -16,6 +16,13 @@ from idaes.core.scaling import AutoScaler
 from evaporator_manual_scaling import apply_manual_scaling
 
 INPUT_FILE = "models/model_effect_with_recycle.json"
+# These model files seem to solve:
+# model_effect_with_recycle.json
+# model_only_effects_no_recycles.json
+# evaporator_dsi.json
+# evaporator.json
+# However some of them (especially the big ones) might not solve in a wide variety of conditions
+
 
 # Get current location (so that we can retrieve .json file with the model data)
 __location__ = os.path.realpath(os.path.join(os.getcwd(), os.path.dirname(__file__)))
@@ -47,3 +54,19 @@ opt = SolverFactory('ipopt')
 opt.options["nlp_scaling_method"] = "user-scaling"
 results = opt.solve(m, tee=True)
 # This doesn't have an objective function or decision variables, because we are solving for an exact solution.
+
+
+fixed_variables = [
+    item 
+      for id, prop in flowsheet.properties_map.items()
+      if prop.corresponding_constraint != None
+      for item in prop.corresponding_constraint
+      if item is not None
+      and hasattr(item, "name")
+]
+
+print("==*************** MODEL INFORMATION *****************==")
+print("Fixed variables:")
+print([var.name for var in fixed_variables])
+for var in fixed_variables:
+    print(f"{pyo.value(var):>20}", var)

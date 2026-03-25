@@ -62,14 +62,14 @@ fixed_variables = [
       if prop.corresponding_constraint != None
       for item in prop.corresponding_constraint
       if item is not None
+      and hasattr(item, "name")
 ]
 
 print("==*************** MODEL INFORMATION *****************==")
 print("Fixed variables:")
-print(fixed_variables)
+print([var.name for var in fixed_variables])
 for var in fixed_variables:
-    print(pyo.value(var), var)
-
+    print(f"{pyo.value(var):>20}", var)
 
 print("Model",m)
 print("Objective function:", m.fs.objective)

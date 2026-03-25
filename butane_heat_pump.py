@@ -45,6 +45,7 @@ fixed_variables = [
       if prop.corresponding_constraint != None
       for item in prop.corresponding_constraint
       if item is not None
+      and hasattr(item, "name")
 ]
 
 m = flowsheet.model
@@ -53,6 +54,6 @@ results = opt.solve(m, tee=True)
 # This doesn't have an objective function or decision variables, because we are solving for an exact solution.
 
 print("Fixed variables:")
-print(fixed_variables)
+print([var.name for var in fixed_variables])
 for var in fixed_variables:
-    print(pyo.value(var), var)
+    print(f"{pyo.value(var):>20}", var)

@@ -16,7 +16,7 @@ from idaes.core.scaling import AutoScaler
 from idaes.core.util.scaling import constraint_scaling_transform
 from evaporator_manual_scaling import apply_manual_scaling
 
-INPUT_FILE = "models/hthp_with_effect.json"
+INPUT_FILE = "models/hthp_three_effects.json"
 
 # Get current location (so that we can retrieve .json file with the model data)
 __location__ = os.path.realpath(os.path.join(os.getcwd(), os.path.dirname(__file__)))
@@ -53,3 +53,8 @@ print("Fixed variables:")
 print([var.name for var in fixed_variables])
 for var in fixed_variables:
     print(f"{pyo.value(var):>20}", var)
+
+
+dt = DiagnosticsToolbox(m)
+dt.display_variables_near_bounds()
+dt.display_constraints_with_large_residuals()

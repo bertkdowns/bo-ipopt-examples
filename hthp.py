@@ -13,16 +13,9 @@ import pyomo.environ as pyo
 from math import log
 from idaes.core.util.scaling import get_scaling_factor
 from idaes.core.scaling import AutoScaler
-from evaporator_manual_scaling import apply_manual_scaling
-
-INPUT_FILE = "models/model_effect_with_recycle.json"
-# These model files seem to solve:
-# model_effect_with_recycle.json
-# model_only_effects_no_recycles.json
-# evaporator_dsi.json
-# evaporator.json
-# However some of them (especially the big ones) might not solve in a wide variety of conditions
-
+from idaes.core.util.scaling import constraint_scaling_transform
+# This uses Keegan's High Temperature Heat Pump model.
+INPUT_FILE = "models/hthp.json"
 
 # Get current location (so that we can retrieve .json file with the model data)
 __location__ = os.path.realpath(os.path.join(os.getcwd(), os.path.dirname(__file__)))
@@ -42,15 +35,15 @@ assert flowsheet.degrees_of_freedom() == 0, "Degrees of freedom is not 0: " + st
 flowsheet.report_statistics()
 
 
-
-# This model currently fails to solve in ipopt: it says the problem is infeasible.
-# However, it is very close to the correct solution, and could be solved with a homotopy method.
-# It would be very interesting and useful for us if BO-IPOPT can solve this problem.
-
-apply_manual_scaling(flowsheet)
-
 m = flowsheet.model
+
+
+# We need to scale this constraint in order for IPOPT to solve successfully.
+constraint_scaling_transform(m.fs.equality_constraint_341300[0], 1e-5)
+
+
 opt = SolverFactory('ipopt')
+# opt.options["tol"] = 1e-3
 results = opt.solve(m, tee=True)
 # This doesn't have an objective function or decision variables, because we are solving for an exact solution.
 
@@ -69,3 +62,10 @@ print("Fixed variables:")
 print([var.name for var in fixed_variables])
 for var in fixed_variables:
     print(f"{pyo.value(var):>20}", var)
+
+dt = DiagnosticsToolbox(m)
+dt.display_variables_near_bounds()
+dt.display_constraints_with_large_residuals()
+
+svd_toolbox = dt.prepare_svd_toolbox()
+svd_toolbox.display_variables_in_constraint(m.fs.equality_constraint_341300[0])

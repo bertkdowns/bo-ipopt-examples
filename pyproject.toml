@@ -5,6 +5,6 @@ description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.14"
 dependencies = [
-    "ahuora-builder-types==0.1.12",
-    "ahuora-builder==0.1.12",
+    "ahuora-builder-types==0.1.13",
+    "ahuora-builder==0.1.13",
 ]
